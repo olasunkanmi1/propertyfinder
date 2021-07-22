@@ -14,23 +14,18 @@ import {FaWhatsappSquare} from 'react-icons/fa'
 import {AiOutlineHeart} from 'react-icons/ai'
 import {MdMessage} from 'react-icons/md'
 import {MdReportProblem} from 'react-icons/md'
+import {FiArrowLeftCircle, FiArrowRightCircle} from 'react-icons/fi'
+import '../rough.css'
 
-import left from '../images/left-arrow.svg';
-import right from '../images/right-arrow.svg';
-// import { Swiper, SwiperSlide } from 'swiper/react';
-// import 'swiper/swiper.scss';
-{/* <Swiper
-spaceBetween={20}
-slidesPerView={3}
-onSlideChange={() => console.log('slide change')}
-onSwiper={(swiper) => console.log(swiper)}
->
-<SwiperSlide>Slide 1</SwiperSlide>
-<SwiperSlide>Slide 2</SwiperSlide>
-<SwiperSlide>Slide 3</SwiperSlide>
-<SwiperSlide>Slide 4</SwiperSlide>
-...
-</Swiper> */}
+import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/swiper.scss';
+import 'swiper/components/navigation/navigation.scss';
+import 'swiper/components/pagination/pagination.scss';
+import 'swiper/components/scrollbar/scrollbar.scss';
+
+SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
+
 
 
 const Home = styled.section`
@@ -116,17 +111,7 @@ const arrowBtns = css`
     }
 `
 
-const Previous = styled.i`
-    ${arrowBtns}
-    background-image: url(${left});
-    background-size: contain;
-`
 
-const Next = styled.i`
-    ${arrowBtns}
-    background-image: url(${right});
-    background-size: contain;
-`
 
 const Desciption = styled.div`
     grid-column: 2 / 3;
@@ -323,40 +308,17 @@ const Details = () => {
         };
     }, [id])
 
-    const [current, setCurrent] = useState()
-    const length = home.length
-    const timeout = useRef(null)
-
-    useEffect(() => {
-        const nextSlide = () => {
-            setCurrent(current => (current === length - 1 ? 0 : current + 1))
-        }
-
-        timeout.current = setTimeout(nextSlide, 5000)
-
-        return () => {
-            if (timeout.current) {
-                clearTimeout(timeout.current)
-            }
-        }
-    }, [current, length])
+    const [current, setCurrent] = useState(0);
 
     const nextSlide = () => {
-        if (timeout.current) {
-            clearTimeout(timeout.current)
-        }
-
-        setCurrent(current === length - 1 ? 0 : current + 1)
+        setCurrent(current === - 1 ? 0 : current + 1)
     }
+    console.log(current);
 
-    const prevSlide = () => {
-        if (timeout.current) {
-            clearTimeout(timeout.current)
-        }
-
-        setCurrent(current === 0 ? length - 1 : current - 1)
-    }
-
+    // const prevSlide = () => {
+    //     setCurrent(current === 0 ? length - 1 : current - 1)
+    // }
+    
     return (
         <Home>
             {Object.keys(home).length === 0 ? (
@@ -368,15 +330,22 @@ const Details = () => {
                     </Name>
                     <Grid>
                         <Img>
-                            <img src={home.image} alt='home' />
-                            <img src={home.imageTwo} alt='home' />
-                            <img src={home.imageThree} alt='home' />
-                            <img src={home.imageFour} alt='home' />
-                            <img src={home.imageFive} alt='home' />
-                            <PrevNext>
-                                <Previous onClick={prevSlide} />
-                                <Next onClick={nextSlide} />
-                            </PrevNext>
+                            <Swiper className="container"
+                                spaceBetween={10}
+                                slidesPerView={1}
+                                navigation
+                                pagination={{ clickable: true }}
+                                scrollbar={{ draggable: true }}
+                                onSlideChange={() => console.log('slide change')}
+                                onSwiper={(swiper) => console.log(swiper)}
+                            >
+                                <SwiperSlide className="slide"><img src={home.image} alt="home" className="photo" /></SwiperSlide>
+                                <SwiperSlide className="slide"><img src={home.imageTwo} alt="home" className="photo" /></SwiperSlide>
+                                <SwiperSlide className="slide"><img src={home.imageThree} alt="home" className="photo" /></SwiperSlide>
+                                <SwiperSlide className="slide"><img src={home.imageFour} alt="home" className="photo" /></SwiperSlide>
+                                <SwiperSlide className="slide"><img src={home.imageFive} alt="home" className="photo" /></SwiperSlide>
+                                ...
+                            </Swiper>
                         </Img>
                         
                         <Desciption>
@@ -427,6 +396,23 @@ const Details = () => {
                             </Report>
                         </Disclaimer>
                     </Grid>
+                        <Swiper className="container"
+                        spaceBetween={10}
+                        slidesPerView={1}
+                        navigation
+                        pagination={{ clickable: true }}
+                        scrollbar={{ draggable: true }}
+                        onSlideChange={() => console.log('slide change')}
+                        onSwiper={(swiper) => console.log(swiper)}
+                        >
+                        <SwiperSlide className="slide"><img src={home.image} alt="home" className="photo" /></SwiperSlide>
+                        <SwiperSlide className="slide"><img src={home.imageTwo} alt="home" className="photo" /></SwiperSlide>
+                        <SwiperSlide className="slide"><img src={home.imageThree} alt="home" className="photo" /></SwiperSlide>
+                        <SwiperSlide className="slide"><img src={home.imageFour} alt="home" className="photo" /></SwiperSlide>
+                        <SwiperSlide className="slide"><img src={home.imageFive} alt="home" className="photo" /></SwiperSlide>
+                        ...
+                        </Swiper>
+                    
                 </div>
             )}
             
