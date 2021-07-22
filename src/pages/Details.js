@@ -307,17 +307,6 @@ const Details = () => {
             dispatch(removeSelectedHome());
         };
     }, [id])
-
-    const [current, setCurrent] = useState(0);
-
-    const nextSlide = () => {
-        setCurrent(current === - 1 ? 0 : current + 1)
-    }
-    console.log(current);
-
-    // const prevSlide = () => {
-    //     setCurrent(current === 0 ? length - 1 : current - 1)
-    // }
     
     return (
         <Home>
@@ -396,23 +385,6 @@ const Details = () => {
                             </Report>
                         </Disclaimer>
                     </Grid>
-                        <Swiper className="container"
-                        spaceBetween={10}
-                        slidesPerView={1}
-                        navigation
-                        pagination={{ clickable: true }}
-                        scrollbar={{ draggable: true }}
-                        onSlideChange={() => console.log('slide change')}
-                        onSwiper={(swiper) => console.log(swiper)}
-                        >
-                        <SwiperSlide className="slide"><img src={home.image} alt="home" className="photo" /></SwiperSlide>
-                        <SwiperSlide className="slide"><img src={home.imageTwo} alt="home" className="photo" /></SwiperSlide>
-                        <SwiperSlide className="slide"><img src={home.imageThree} alt="home" className="photo" /></SwiperSlide>
-                        <SwiperSlide className="slide"><img src={home.imageFour} alt="home" className="photo" /></SwiperSlide>
-                        <SwiperSlide className="slide"><img src={home.imageFive} alt="home" className="photo" /></SwiperSlide>
-                        ...
-                        </Swiper>
-                    
                 </div>
             )}
             
