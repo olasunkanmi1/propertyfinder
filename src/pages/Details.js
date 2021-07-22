@@ -188,6 +188,10 @@ const Contact = styled.div`
     }
     p {
         margin-left: 50px;
+
+        @media screen and (max-width: 430px) {
+            margin-left: 0px;
+        }
     }
 `
 
@@ -203,6 +207,11 @@ const Call = styled.div`
     
     span {
         margin: 0 10px;
+    }
+
+    @media screen and (max-width: 430px) {
+        flex-direction: column;
+        align-items: start;
     }
 `
 const Ch = styled.div`

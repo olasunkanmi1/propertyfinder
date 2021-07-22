@@ -70,7 +70,7 @@ const House = styled.div`
     }
 
     @media screen and (max-width: 555px) {
-        grid-template-rows: 300px 270px;
+        grid-template-rows: 300px 270px;}
 `
 
 const Thumbmail = styled(Link)`
@@ -122,6 +122,12 @@ const Info = styled.div`
             display: -webkit-box;
             -webkit-box-orient: vertical;
             -webkit-line-clamp: 3;
+        }
+        @media screen and (max-width: 290px) {
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
         }
     }
 
