@@ -13,6 +13,7 @@ import Details from './pages/Details'
 import Rentals from './pages/Rentals'
 
 import styled from 'styled-components';
+import Saved from './pages/Saved';
 
 const Cr = styled.footer`
     width: 100vw;
@@ -45,6 +46,7 @@ function App() {
           <Route path="/properties" exact component={Properties} />    
           <Route path={`/properties/:id`} exact component={Details} />
           <Route path="/rentals"exact component={Rentals} />
+          <Route path="/saved"exact component={Saved} />
           <Route>Error 404 Not Found</Route>
         </Switch>
         <Footer {...InteriorData} />
