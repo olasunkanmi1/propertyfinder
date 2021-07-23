@@ -11,7 +11,7 @@ const SavedSection= styled.section`
 const Saved = () => {
     return (
         <SavedSection>
-            loading......
+            <h1>Empty</h1>
         </SavedSection>
     )
 }

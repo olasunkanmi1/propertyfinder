@@ -18,6 +18,7 @@ import heartfill from '../images/heartfill.svg'
 //action
 import { setHomes } from '../redux/actions/homeActions'
 
+import Alert from '../components/Alert'
 
 const Homes = styled.section`
 display: flex;
@@ -277,7 +278,7 @@ const Cctv = styled(GiCctvCamera)`
     ${icons}
 `
 
-const HomesList = () => {
+const HomesList = ({ popup,appear }) => {
     const homes = useSelector(state => state.allHomes.homes); //access to store
     console.log(homes);
 
@@ -324,7 +325,7 @@ const HomesList = () => {
                                     <p>{home.paragraph}</p>
                                     <PrSa>
                                         <h1>{home.price}</h1>
-                                        <Save onClick={() => addItem(home) } />
+                                        <Save onClick={appear} />
                                     </PrSa>
                                     <ProDet>
                                         <p>{home.by}</p>
@@ -341,6 +342,7 @@ const HomesList = () => {
                         )
                     })}
                 </Container>
+                <Alert />
                 </div>)}
         </Homes>
     )
