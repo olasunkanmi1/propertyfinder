@@ -183,7 +183,7 @@ const Save = styled.i`
     height: 25px;
     cursor: pointer;
 
-    &:target {
+    &:active {
         background-image: url(${heartfill});
     }
 `
