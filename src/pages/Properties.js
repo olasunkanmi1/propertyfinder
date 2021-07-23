@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import styled, {css} from 'styled-components/macro'
 import { useSelector, useDispatch } from 'react-redux'
 import axios from 'axios'
+import { useCart } from 'react-use-cart'
 
 import { Button } from '../components/Button'
 import {AiOutlineHeart} from 'react-icons/ai'
@@ -11,6 +12,8 @@ import {FaBath} from 'react-icons/fa'
 import {FaSwimmingPool} from 'react-icons/fa'
 import {GiCctvCamera} from 'react-icons/gi'
 import { Link } from "react-router-dom";
+import heart from '../images/heart.svg'
+import heartfill from '../images/heartfill.svg'
 
 //action
 import { setHomes } from '../redux/actions/homeActions'
@@ -174,11 +177,15 @@ const PrSa = styled.div`
     color: midnightblue;
 `
 
-const Save = styled(AiOutlineHeart)`
+const Save = styled.i`
+    background-image: url(${heart});
     width: 25px;
     height: 25px;
-    stroke: 2px;
-    fill: red;
+    cursor: pointer;
+
+    &:target {
+        background-image: url(${heartfill});
+    }
 `
 
 const ProDet = styled.div`
@@ -292,6 +299,9 @@ const HomesList = () => {
     }, [])
     console.log("Homes: ", homes);
 
+    //add to saved
+    const { addItem } = useCart();
+
     return (
         <Homes>
             {Object.keys(homes).length === 0 ? (
@@ -314,7 +324,7 @@ const HomesList = () => {
                                     <p>{home.paragraph}</p>
                                     <PrSa>
                                         <h1>{home.price}</h1>
-                                        <Save />
+                                        <Save onClick={() => addItem(home) } />
                                     </PrSa>
                                     <ProDet>
                                         <p>{home.by}</p>

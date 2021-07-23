@@ -14,6 +14,7 @@ import Rentals from './pages/Rentals'
 
 import styled from 'styled-components';
 import Saved from './pages/Saved';
+import { CartProvider } from 'react-use-cart';
 
 const Cr = styled.footer`
     width: 100vw;
@@ -37,21 +38,23 @@ function App() {
 
   return (
     <>
+          {/* <CartProvider> */}
       <Router onUpdate={() => window.scrollTo(0, 0)}>
         <GlobalStyle />
         <Navbar toggle={toggle} />
         <Sidebar isOpen={isOpen} toggle={toggle} />
         <Switch>
-          <Route path="/" exact component={HomePage} />
-          <Route path="/properties" exact component={Properties} />    
-          <Route path={`/properties/:id`} exact component={Details} />
-          <Route path="/rentals"exact component={Rentals} />
-          <Route path="/saved"exact component={Saved} />
-          <Route>Error 404 Not Found</Route>
+            <Route path="/" exact component={HomePage} />
+            <Route path="/properties" exact component={Properties} />    
+            <Route path={`/properties/:id`} exact component={Details} />
+            <Route path="/rentals"exact component={Rentals} />
+            <Route path="/saved"exact component={Saved} />
+            {/* <Route>Error 404 Not Found</Route> */}
         </Switch>
         <Footer {...InteriorData} />
         <Cr>Property Finder &copy; 2021</Cr>
       </Router>
+          {/* </CartProvider> */}
     </>
   );
 }
