@@ -1,7 +1,8 @@
-import React from 'react'
+import React, {useState, useRef, useCallback} from 'react'
 import styled from 'styled-components/macro'
 import { Button } from './Button'
 import {ImCancelCircle} from 'react-icons/im'
+import { useSpring, animated } from 'react-spring'
 
 const AlertSection = styled.div`
     display: flex;
@@ -12,20 +13,23 @@ const AlertSection = styled.div`
     width: 400px;
     height: 150px;
     position: fixed;
-    top: 20%;
+    top: 40%;
     left: 50%;
     transform: translateX(-50%);
     color: #fff;
     background: rgb(214, 86, 86);
-    opacity: 1;
+    z-index: 9999999;
 
-    h2 {
+    h3 {
         margin-top: 1rem;
     }
 `
+const Wrap = styled.div`
+    background: rgb(214, 86, 86);
+`
 
 const Close = styled(ImCancelCircle)`
-    width: 25px;
+    width: 30px;
     text-align: right;
     position: absolute;
     right: .5rem;
@@ -38,18 +42,32 @@ const Btns = styled.div`
     grid-gap: 10px;
 `
 
-const Alert = (props, { popup, appear }) => {
-    return (props.trigger) ? (
-        <AlertSection popup={popup} onClick={appear}>
-            <Close onClick={appear} />
-            <h2>LOG IN TO SAVE</h2>
-            <Btns>
-                <Button big="true" css={`font-size: 15px;`}>LOG IN</Button>
-                <Button big="true" primary="true" css={`font-size: 15px;`}>SIGN UP</Button>
-                {props.children}
-            </Btns>
-        </AlertSection>
-    ) : "";
+const Alert = ({showPopup, setShowPopup}) => {
+    const popupRef = useRef()
+    
+    const animation = useSpring({
+        config: {
+            duration: 250
+        },
+        opacity: showPopup ? 1 : 0,
+        transform: showPopup ? `translateY(0%)` : `translateY(-100%)`
+    })
+    return <>
+        {showPopup ? 
+            <animated.div style={animation}>
+            <Wrap>
+                    <AlertSection>
+                            <Close onClick={() => setShowPopup(prev => !prev)} />
+                            <h3>LOG IN / SIGN UP TO SAVE</h3>
+                            <Btns>
+                                <Button big="true" css={`font-size: 15px;`}>LOG IN</Button>
+                                <Button big="true" primary="true" css={`font-size: 15px;`}>SIGN UP</Button>
+                            </Btns>
+                    </AlertSection> 
+            </Wrap> 
+        </animated.div>
+        : null} 
+    </>    
 }
 
 export default Alert

@@ -15,7 +15,6 @@ import Rentals from './pages/Rentals'
 import styled from 'styled-components';
 import Saved from './pages/Saved';
 import { CartProvider } from 'react-use-cart';
-import Alert from './components/Alert';
 
 const Cr = styled.footer`
     width: 100vw;
@@ -37,11 +36,6 @@ function App() {
       setIsOpen(!isOpen)
     }
 
-    const [popup, setPopup] = useState(true)
-    const appear = () => {
-      setPopup(!popup)
-    }
-
   return (
     <>
           {/* <CartProvider> */}
@@ -49,7 +43,6 @@ function App() {
         <GlobalStyle />
         <Navbar toggle={toggle} />
         <Sidebar isOpen={isOpen} toggle={toggle} />
-        <Alert trigger={popup} appear={appear} />
         <Switch>
             <Route path="/" exact component={HomePage} />
             <Route path="/properties" exact component={Properties} />    

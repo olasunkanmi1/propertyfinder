@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react'
-import styled, {css} from 'styled-components/macro'
+import React, { useEffect, useState } from 'react'
+import styled, {css, keyframes} from 'styled-components/macro'
 import { useSelector, useDispatch } from 'react-redux'
 import axios from 'axios'
 import { useCart } from 'react-use-cart'
@@ -14,6 +14,7 @@ import {GiCctvCamera} from 'react-icons/gi'
 import { Link } from "react-router-dom";
 import heart from '../images/heart.svg'
 import heartfill from '../images/heartfill.svg'
+import logo from '../images/logo.png'
 
 //action
 import { setHomes } from '../redux/actions/homeActions'
@@ -40,12 +41,36 @@ background: #eee;
     padding: 1.5rem 1.5rem 1.5rem;
 }
 `
-const Load = styled.div`
+
+const loading = keyframes`
+    from{transform: rotate(0deg)};
+    to{transform: rotate(360deg)};
+`
+
+const Ld = styled.div`
     display: flex;
-    height: 100vh;
     justify-content: center;
     align-items: center;
+    height: 100vh;
 `
+const Load = styled.div`
+    display: flex;
+    background: #d93025;
+    opacity: .7;
+    border-radius: 50%;
+    height: 300px;
+    width: 300px;
+    justify-content: center;
+    align-items: center;
+   
+
+    img {
+        width: 11rem;
+        height: 3.5rem;
+        animation: ${loading} 5s infinite;
+    }
+`
+
 const Famp = styled.div`
     margin-bottom: 1rem;
     margin-top: 75px;;
@@ -278,7 +303,7 @@ const Cctv = styled(GiCctvCamera)`
     ${icons}
 `
 
-const HomesList = ({ popup,appear }) => {
+const HomesList = () => {
     const homes = useSelector(state => state.allHomes.homes); //access to store
     console.log(homes);
 
@@ -303,10 +328,17 @@ const HomesList = ({ popup,appear }) => {
     //add to saved
     const { addItem } = useCart();
 
+    //popup
+    const [showPopup, setShowPopup] = useState(false)
+
+    const appear = () => {
+        setShowPopup(prev => !prev)
+    }
+
     return (
         <Homes>
             {Object.keys(homes).length === 0 ? (
-                <Load><h1>Loading.......</h1> </Load>
+                <Ld><Load><img src={logo} alt="logo" /></Load></Ld>
             ) : (
                 <div>
                 <Famp>
@@ -342,7 +374,7 @@ const HomesList = ({ popup,appear }) => {
                         )
                     })}
                 </Container>
-                <Alert />
+                <Alert showPopup={showPopup} setShowPopup={setShowPopup} />
                 </div>)}
         </Homes>
     )
