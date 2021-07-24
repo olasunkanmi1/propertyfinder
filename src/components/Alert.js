@@ -25,7 +25,16 @@ const AlertSection = styled.div`
     }
 `
 const Wrap = styled.div`
-    background: rgb(214, 86, 86);
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999999;
 `
 
 const Close = styled(ImCancelCircle)`
@@ -43,7 +52,7 @@ const Btns = styled.div`
 `
 
 const Alert = ({showPopup, setShowPopup}) => {
-    const popupRef = useRef()
+    const popupRef = useRef();
     
     const animation = useSpring({
         config: {
@@ -52,21 +61,26 @@ const Alert = ({showPopup, setShowPopup}) => {
         opacity: showPopup ? 1 : 0,
         transform: showPopup ? `translateY(0%)` : `translateY(-100%)`
     })
+
+    const closePopup = e => {
+        if (popupRef.current === e.target) {
+            setShowPopup(false);
+        }
+    };
     return <>
-        {showPopup ? 
-            <animated.div style={animation}>
-            <Wrap>
-                    <AlertSection>
-                            <Close onClick={() => setShowPopup(prev => !prev)} />
-                            <h3>LOG IN / SIGN UP TO SAVE</h3>
-                            <Btns>
-                                <Button big="true" css={`font-size: 15px;`}>LOG IN</Button>
-                                <Button big="true" primary="true" css={`font-size: 15px;`}>SIGN UP</Button>
-                            </Btns>
-                    </AlertSection> 
-            </Wrap> 
-        </animated.div>
-        : null} 
+        {showPopup ? (
+            <Wrap ref={popupRef} onClick={closePopup}>
+            {/* <animated.div style={animation}> */}
+            <AlertSection >
+                <Close onClick={() => setShowPopup(prev => !prev)} />
+                <h3>LOG IN / SIGN UP TO SAVE</h3>
+                <Btns>
+                    <Button big="true" css={`font-size: 15px;`}>LOG IN</Button>
+                    <Button big="true" primary="true" css={`font-size: 15px;`}>SIGN UP</Button>
+                </Btns>
+            </AlertSection> 
+            {/* </animated.div> */}
+        </Wrap>) : null}
     </>    
 }
 

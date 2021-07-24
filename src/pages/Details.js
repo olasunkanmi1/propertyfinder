@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import axios from 'axios'
-import styled, {css} from 'styled-components'
+import styled, {css, keyframes} from 'styled-components'
 import { useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 //actions
@@ -16,6 +16,8 @@ import {MdMessage} from 'react-icons/md'
 import {MdReportProblem} from 'react-icons/md'
 import {FiArrowLeftCircle, FiArrowRightCircle} from 'react-icons/fi'
 import '../rough.css'
+import Alert from '../components/Alert'
+import logo from '../images/logo.png'
 
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -50,11 +52,33 @@ const Home = styled.section`
     }
 `
 
-const Load = styled.div`
+const loading = keyframes`
+    from{transform: rotate(0deg)};
+    to{transform: rotate(360deg)};
+`
+
+const Ld = styled.div`
     display: flex;
-    height: 100vh;
     justify-content: center;
     align-items: center;
+    height: 100vh;
+`
+const Load = styled.div`
+    display: flex;
+    background: #d93025;
+    opacity: .7;
+    border-radius: 50%;
+    height: 300px;
+    width: 300px;
+    justify-content: center;
+    align-items: center;
+   
+
+    img {
+        width: 11rem;
+        height: 3.5rem;
+        animation: ${loading} 5s infinite;
+    }
 `
 
 const Name = styled.div`
@@ -87,31 +111,6 @@ const Img = styled.div`
         object-fit: cover;
     }
 `
-const PrevNext = styled.div`
-    display: flex;
-    justify-content: space-between;
-    padding: 1rem;
-    position: absolute;
-    bottom: 50%;
-    transform: translateY(50%);
-    z-index: 10;
-    width: 100%;
-`
-
-const arrowBtns = css`
-    width: 50px;
-    height: 50px;
-    cursor: pointer;
-    background: midnightblue;
-    border-radius: 50%;
-
-    @media screen and (max-width: 350px) {
-        width: 30px;
-        height: 30px;
-    }
-`
-
-
 
 const Desciption = styled.div`
     grid-column: 2 / 3;
@@ -316,11 +315,18 @@ const Details = () => {
             dispatch(removeSelectedHome());
         };
     }, [id])
+
+    //popup
+    const [showPopup, setShowPopup] = useState(false)
+
+    const appear = () => {
+        setShowPopup(prev => !prev)
+    }
     
     return (
         <Home>
             {Object.keys(home).length === 0 ? (
-                <Load><h1>Loading.......</h1> </Load>
+                <Ld><Load><img src={logo} alt="logo" /></Load></Ld>
             ) : (
                 <div>
                     <Name>
@@ -358,7 +364,8 @@ const Details = () => {
                                 <li>- Pool</li>
                                 <li>- Fully Fitted Kitchen</li>
                             </ul>
-                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Necessitatibus, nemo nulla laudantium odio illum sit repellendus corporis maiores labore facilis!</p>                            <Btn><Sv />SAVE</Btn>
+                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Necessitatibus, nemo nulla laudantium odio illum sit repellendus corporis maiores labore facilis!</p>                            
+                            <Btn onClick={appear}><Sv />SAVE</Btn>
                         </Desciption>
                         <Contact>
                             <h1>Contact Agent on:</h1>
@@ -394,6 +401,7 @@ const Details = () => {
                             </Report>
                         </Disclaimer>
                     </Grid>
+                    <Alert showPopup={showPopup} setShowPopup={setShowPopup} />
                 </div>
             )}
             

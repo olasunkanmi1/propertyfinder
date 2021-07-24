@@ -1,9 +1,10 @@
-import React from 'react'
+import React, {useState} from 'react'
 import styled, { css } from 'styled-components/macro'
 import { Button } from './Button'
 import {AiOutlineHeart} from 'react-icons/ai'
 import {ImLocation2} from 'react-icons/im'
 import { Link } from "react-router-dom";
+import Alert from './Alert'
 
 const FeaturedSection = styled.section`
     display: flex;
@@ -165,6 +166,7 @@ const Save = styled(AiOutlineHeart)`
     height: 25px;
     stroke: 2px;
     fill: red;
+    cursor: pointer;
 `
 
 const ProDet = styled.div`
@@ -248,6 +250,12 @@ const MoRe = styled.div`
 
 
 const Featured = ({ homes }) => {
+    //popup
+    const [showPopup, setShowPopup] = useState(false)
+
+    const appear = () => {
+        setShowPopup(prev => !prev)
+    }
     return (
         <FeaturedSection>
                 <Famp>
@@ -266,7 +274,7 @@ const Featured = ({ homes }) => {
                                 <p>{home.paragraph}</p>
                                 <PrSa>
                                     <h1>{home.price}</h1>
-                                    <Save />
+                                    <Save onClick={appear} />
                                 </PrSa>
                                 <ProDet>
                                     <p>{home.by}</p>
@@ -287,6 +295,7 @@ const Featured = ({ homes }) => {
                 <Button to="/properties" css={`padding: .5rem; font-size: 15px;`}>VIEW MORE</Button>
                 <Button to="/rentals" css={`padding: .5rem; font-size: 15px;`}>RENTALS</Button>
             </MoRe>
+            <Alert showPopup={showPopup} setShowPopup={setShowPopup} />
         </FeaturedSection>
     )
 }
