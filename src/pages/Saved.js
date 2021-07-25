@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import styled from 'styled-components'
 
 const SavedSection= styled.section`
@@ -9,6 +9,9 @@ const SavedSection= styled.section`
 `
 
 const Saved = () => {
+    useEffect(() => {
+        window.scrollTo(0,0)
+    }, [])
     return (
         <SavedSection>
             <h1>Empty</h1>

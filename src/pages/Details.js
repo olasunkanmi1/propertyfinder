@@ -322,6 +322,10 @@ const Details = () => {
     const appear = () => {
         setShowPopup(prev => !prev)
     }
+
+    useEffect(() => {
+        window.scrollTo(0,0)
+    }, [])
     
     return (
         <Home>

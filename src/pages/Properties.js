@@ -334,7 +334,10 @@ const HomesList = () => {
     const appear = () => {
         setShowPopup(prev => !prev)
     }
-
+    
+    useEffect(() => {
+        window.scrollTo(0,0)
+    }, [])
     return (
         <Homes>
             {Object.keys(homes).length === 0 ? (

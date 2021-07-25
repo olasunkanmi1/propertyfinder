@@ -39,10 +39,10 @@ function App() {
   return (
     <>
           {/* <CartProvider> */}
-      <Router onUpdate={() => window.scrollTo(0, 0)}>
+      <Router >
         <GlobalStyle />
         <Navbar toggle={toggle} />
-        <Sidebar isOpen={isOpen} toggle={toggle} />
+        <Sidebar isOpen={isOpen} setIsOpen={setIsOpen} toggle={toggle} />
         <Switch>
             <Route path="/" exact component={HomePage} />
             <Route path="/properties" exact component={Properties} />    

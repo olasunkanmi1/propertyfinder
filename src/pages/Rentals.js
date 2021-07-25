@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import styled from 'styled-components'
 
 const Rt = styled.section`
@@ -9,6 +9,9 @@ const Rt = styled.section`
 `
 
 const Rentals = () => {
+    useEffect(() => {
+        window.scrollTo(0,0)
+    }, [])
     return (
         <Rt>
             <h1>Coming Soon...</h1>
