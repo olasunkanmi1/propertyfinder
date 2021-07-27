@@ -65,17 +65,17 @@ const SlideContent = styled.div`
 
     h1 {
         // font-size: clamp(.3rem, 8vw, 20rem);
-        font-size: 4rem;
+        font-size: 2.5rem;
         font-weight: 500;
         text-transform: uppercase;
         text-align: left;
         padding: 0 1rem;
         text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
-        line-height: 1rem;
+        line-height: 4rem;
 
         @media screen and (min-width: 1300px) {
             // font-size: clamp(.3rem, 4vw, 20rem);
-            font-size: 3rem;
+            font-size: 4rem;
         }
     }
 
