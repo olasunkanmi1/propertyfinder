@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import styled, { css } from 'styled-components/macro'
 import { Button } from './Button'
-import left from '../images/left-arrow.svg';
-import right from '../images/right-arrow.svg';
 import view from '../images/view.svg';
 
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper';
@@ -16,9 +14,10 @@ SwiperCore.use([Navigation, Pagination, Scrollbar, Autoplay, A11y]);
 
 const SliderSection = styled.section`
     height: 100vh;
-    // padding-top: 75px;
+    padding-top: 75px;
     // max-height: 1100px;
     width: 100vw;
+    height: 100vwh;
 `
 
 const Container = styled.div`
@@ -66,21 +65,23 @@ const SlideContent = styled.div`
 
     h1 {
         // font-size: clamp(.3rem, 8vw, 20rem);
-        font-size: 2rem;
+        font-size: 4rem;
         font-weight: 500;
         text-transform: uppercase;
         text-align: left;
         padding: 0 1rem;
         text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
+        line-height: 1rem;
 
-        // @media screen and (min-width: 1300px) {
-        //     font-size: clamp(.3rem, 4vw, 20rem);
-        // }
+        @media screen and (min-width: 1300px) {
+            // font-size: clamp(.3rem, 4vw, 20rem);
+            font-size: 3rem;
+        }
     }
 
     p {
         // font-size: clamp(.3rem, 5vw, 15rem);
-        font-size: 1rem;
+        font-size: 2rem;
         padding: 1rem 1rem;
         text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
     }
@@ -119,7 +120,7 @@ const SliderDisplay = ({ slides }) => {
                             <h1>{slide.title}</h1>
                             <p>{slide.price}</p>
                             <Button to={slide.path}  big="true"
-                            css={`margin-left: 1rem;`}>
+                            css={`margin-left: 1rem; padding: .5rem .5rem;`}>
                                 {slide.label} 
                                 <Arrow />
                             </Button>
