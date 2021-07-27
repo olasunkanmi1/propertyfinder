@@ -90,6 +90,7 @@ const SlideContent = styled.div`
         font-size: 2rem;
         padding: 1rem 1rem;
         text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
+        color: #d93025;
     }
 `
 

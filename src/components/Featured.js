@@ -5,6 +5,8 @@ import {AiOutlineHeart} from 'react-icons/ai'
 import {ImLocation2} from 'react-icons/im'
 import { Link } from "react-router-dom";
 import Alert from './Alert'
+import heart from '../images/heart.svg'
+import heartfill from '../images/heartfill.svg'
 
 const FeaturedSection = styled.section`
     display: flex;
@@ -161,12 +163,15 @@ const PrSa = styled.div`
     color: midnightblue;
 `
 
-const Save = styled(AiOutlineHeart)`
+const Save = styled.i`
+    background-image: url(${heart});
     width: 25px;
     height: 25px;
-    stroke: 2px;
-    fill: red;
     cursor: pointer;
+
+    &:active, &:hover, &:target {
+        background-image: url(${heartfill});
+    }
 `
 
 const ProDet = styled.div`
