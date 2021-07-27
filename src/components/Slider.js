@@ -64,6 +64,7 @@ const SlideContent = styled.div`
         text-align: left;
         padding: 0 1rem;
         text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
+        line-height: 2rem;
 
         @media screen and (min-width: 1300px) {
             // font-size: clamp(.3rem, 4vw, 20rem);
