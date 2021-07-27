@@ -13,10 +13,22 @@ import 'swiper/components/scrollbar/scrollbar.scss';
 SwiperCore.use([Navigation, Pagination, Scrollbar, Autoplay, A11y]);
 
 const SliderSection = styled.section`
+    display: flex;
+    width: 100vw;
     height: 100vh;
     padding-top: 75px;
     // max-height: 1100px;
-    width: 100vw;
+
+    // &:before {
+    //     content: '';
+    //     width: 100vw;
+    //     height: 100vh;
+    //     position: absolute;
+    //     top: 0;
+    //     background: #000;
+    //     opacity: .5;
+    //     z-index: 2;
+    // }
 `
 
 const Container = styled.div`
@@ -33,8 +45,8 @@ const SlideImage = styled.img`
     position: absolute;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
 `
 
@@ -69,6 +81,7 @@ const SlideContent = styled.div`
         @media screen and (min-width: 1300px) {
             // font-size: clamp(.3rem, 4vw, 20rem);
             font-size: 4rem;
+            line-height: 4rem;
         }
     }
 
@@ -93,7 +106,8 @@ const SliderDisplay = ({ slides }) => {
     return (
         <SliderSection>
             <Container>
-                <Swiper className="container"
+                <Swiper 
+                className="container"
                 spaceBetween={0}
                 slidesPerView={1}
                 navigation
