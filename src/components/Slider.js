@@ -16,7 +16,7 @@ SwiperCore.use([Navigation, Pagination, Scrollbar, Autoplay, A11y]);
 
 const SliderSection = styled.section`
     height: 100vh;
-    padding-top: 75px;
+    // padding-top: 75px;
     // max-height: 1100px;
     width: 100vw;
 `
@@ -59,38 +59,28 @@ const SlideContent = styled.div`
     position: absolute;
     top: 30%;
     transform: translateY(-30%);
-
-    // &:before {
-    //     content: '';
-    //     position: absolute;
-    //     width: 100%;
-    //     height: 100vh;
-    //     bottom: 0;
-    //     left: 0;
-    //     z-index: 2;
-    //     background: #000;
-    //     opacity: .6;
-    // }
     
     @media screen and (max-width: 350px) {
         padding: 0 2rem;
     }
 
     h1 {
-        font-size: clamp(.3rem, 8vw, 20rem);
+        // font-size: clamp(.3rem, 8vw, 20rem);
+        font-size: 7rem;
         font-weight: 500;
         text-transform: uppercase;
         text-align: left;
         padding: 0 1rem;
         text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
 
-        @media screen and (min-width: 1300px) {
-            font-size: clamp(.3rem, 4vw, 20rem);
-        }
+        // @media screen and (min-width: 1300px) {
+        //     font-size: clamp(.3rem, 4vw, 20rem);
+        // }
     }
 
     p {
-        font-size: clamp(.3rem, 3vw, 15rem);
+        // font-size: clamp(.3rem, 5vw, 15rem);
+        font-size: 7rem;
         padding: 1rem 1rem;
         text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
     }
@@ -117,6 +107,7 @@ const SliderDisplay = ({ slides }) => {
                     // pagination={{ clickable: true }}
                     // scrollbar={{ draggable: true }}
                     autoplay={{ delay: 5000, disableOnInteraction: false }}
+                    loop={true}
                     onSlideChange={() => console.log('slide change')}
                     onSwiper={(swiper) => console.log(swiper)}
                     >
