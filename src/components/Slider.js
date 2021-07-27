@@ -66,7 +66,7 @@ const SlideContent = styled.div`
 
     h1 {
         // font-size: clamp(.3rem, 8vw, 20rem);
-        font-size: 7rem;
+        font-size: 2rem;
         font-weight: 500;
         text-transform: uppercase;
         text-align: left;
@@ -80,7 +80,7 @@ const SlideContent = styled.div`
 
     p {
         // font-size: clamp(.3rem, 5vw, 15rem);
-        font-size: 7rem;
+        font-size: 1rem;
         padding: 1rem 1rem;
         text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
     }
