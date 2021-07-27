@@ -17,7 +17,6 @@ const SliderSection = styled.section`
     padding-top: 75px;
     // max-height: 1100px;
     width: 100vw;
-    height: 100vwh;
 `
 
 const Container = styled.div`
@@ -28,12 +27,6 @@ const Container = styled.div`
     height: 100%;
     overflow: hidden;
     position: relative;
-`
-
-const Slide = styled.div`
-    width: 100%;
-    height: 100%;
-    z-index: 1;
 `
 
 const SlideImage = styled.img`
@@ -51,13 +44,13 @@ const SlideContent = styled.div`
     position: relative;
     z-index: 50;
     // max-width: 1600px;
-    margin-top: 70px;
+    margin-top: 10px;
     padding: 0 4rem;
     color: #fff;
-    width: 100%;  
+    width: 90%;  
     position: absolute;
-    top: 30%;
-    transform: translateY(-30%);
+    top: 50%;
+    transform: translateY(-50%);
     
     @media screen and (max-width: 350px) {
         padding: 0 2rem;
@@ -65,13 +58,12 @@ const SlideContent = styled.div`
 
     h1 {
         // font-size: clamp(.3rem, 8vw, 20rem);
-        font-size: 2.5rem;
+        font-size: 2rem;
         font-weight: 500;
         text-transform: uppercase;
         text-align: left;
         padding: 0 1rem;
         text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
-        line-height: 4rem;
 
         @media screen and (min-width: 1300px) {
             // font-size: clamp(.3rem, 4vw, 20rem);
@@ -100,37 +92,35 @@ const SliderDisplay = ({ slides }) => {
     return (
         <SliderSection>
             <Container>
-                <Slide>
-                    <Swiper className="container"
-                    spaceBetween={0}
-                    slidesPerView={1}
-                    navigation
-                    // pagination={{ clickable: true }}
-                    // scrollbar={{ draggable: true }}
-                    autoplay={{ delay: 5000, disableOnInteraction: false }}
-                    loop={true}
-                    onSlideChange={() => console.log('slide change')}
-                    onSwiper={(swiper) => console.log(swiper)}
-                    >
-                    {slides.map((slide, index) => {
-                    return (
-                    <SwiperSlide className="slide" key={index}>
-                        <SlideImage src={slide.image} alt={slide.alt} />
-                        <SlideContent>
-                            <h1>{slide.title}</h1>
-                            <p>{slide.price}</p>
-                            <Button to={slide.path}  big="true"
-                            css={`margin-left: 1rem; padding: .5rem .5rem;`}>
-                                {slide.label} 
-                                <Arrow />
-                            </Button>
-                        </SlideContent>
-                    </SwiperSlide>
-                    )
-                    })}
-                    ...
-                    </Swiper>
-                </Slide>
+                <Swiper className="container"
+                spaceBetween={0}
+                slidesPerView={1}
+                navigation
+                // pagination={{ clickable: true }}
+                // scrollbar={{ draggable: true }}
+                autoplay={{ delay: 5000, disableOnInteraction: false }}
+                loop={true}
+                onSlideChange={() => console.log('slide change')}
+                onSwiper={(swiper) => console.log(swiper)}
+                >
+                {slides.map((slide, index) => {
+                return (
+                <SwiperSlide className="slide" key={index}>
+                    <SlideImage src={slide.image} alt={slide.alt} />
+                    <SlideContent>
+                        <h1>{slide.title}</h1>
+                        <p>{slide.price}</p>
+                        <Button to={slide.path}  big="true"
+                        css={`margin-left: 1rem; padding: .5rem .5rem;`}>
+                            {slide.label} 
+                            <Arrow />
+                        </Button>
+                    </SlideContent>
+                </SwiperSlide>
+                )
+                })}
+                ...
+                </Swiper>
             </Container>
         </SliderSection>
     )
