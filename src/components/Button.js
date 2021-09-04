@@ -10,7 +10,7 @@ export const Button = styled(Link)`
     max-width: 200px;
     cursor: pointer;
     text-decoration: none;
-    padding: ${({ big }) => (big ? '.7rem 1.1rem' : '.4rem .9rem')};
+    padding: ${({ big }) => (big ? '.7rem 1.2rem' : '.4rem .9rem')};
     color: #fff;
     font-size: ${({ big }) => (big ? '20px' : '10px')};
     font-weight: ${({ big }) => (big ? '500' : '200')};
