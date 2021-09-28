@@ -89,7 +89,7 @@ const Navbar = ({ isOpen,toggle }) => {
             <NavMenu>
                 {menuData.map((item, index) => (
                     <NavMenuLinks to={item.link} key={index}>
-                        {item.icon} {item.title}
+                        {/* {item.icon} {item.title} */}
                     </NavMenuLinks>
                 ))}
                 <Button primary='true' big='true' onClick={() => window.location.replace("#contact")}>Contact Us</Button>
